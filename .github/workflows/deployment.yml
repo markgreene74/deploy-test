@@ -17,4 +17,10 @@ jobs:
       run: |
         echo test
     - name: Run the deployment script
-      run: echo ${{secrets.ABC}}
+      run: |
+        echo "${{ secrets.KEY }}" | ssh-add -
+        ssh -o StrictHostKeychecking=no \
+        -o UserKnownHostsFile=/dev/null \
+        -p ${{ secrets.PORT }} \
+        ${{ secrets.USERNAME }}@${{ secrets.IP }} \
+        touch testfile.txt
