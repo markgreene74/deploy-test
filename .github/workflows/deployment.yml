@@ -17,4 +17,4 @@ jobs:
       run: |
         echo test
     - name: Run the deployment script
-      run: echo test
+      run: echo ${{secrets.ABC}}
