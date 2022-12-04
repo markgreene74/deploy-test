@@ -18,7 +18,8 @@ jobs:
         echo test
     - name: Run the deployment script
       run: |
-        echo "${{ secrets.KEY }}" | ssh-add -
+        ssh-add - <<< "${{ secrets.KEY }}"
+        echo deployment goes under this line
         ssh -o StrictHostKeychecking=no \
         -o UserKnownHostsFile=/dev/null \
         -p ${{ secrets.PORT }} \
